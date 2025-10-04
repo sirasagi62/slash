@@ -1,14 +1,14 @@
 # slash
 
-`slash` is a simple Go command‑line utility for managing markdown notes.  
-It lets you create, view, and template notes directly from the terminal.
+`slash` is a simple Go command‑line utility for managing markdown prompts.
+It lets you create, view, and template prompts directly from the terminal.
 
 ## Features
 
 - **`slash help`** – Show usage information.
-- **`slash new <name>`** – Create a new markdown note in `~/.config/slash`.
-- **`slash <note> [args...]`** – Display a note. If additional arguments are supplied,
-  the note is processed as a Go `text/template` with variables `{{.Arg1}}`, `{{.Arg2}}`, ….
+- **`slash edit <name>`** – Create a new markdown prompt in `~/.config/slash`.
+- **`slash <prompt> [args...]`** – Display a note. If additional arguments are supplied,
+  the prompt is processed as a Go `text/template` with variables `{{.Arg1}}`, `{{.Arg2}}`, ….
 - **`slash version`** – Print the program version.
 
 ## Installation
@@ -35,13 +35,13 @@ slash help
 # Show version
 slash version
 
-# Create a new note called "todo"
+# Create a new prompt called "todo"
 slash new todo
 
-# Display the note
+# Display the prompt
 slash todo
 
-# Use templating – the note can contain {{.Arg1}}, {{.Arg2}}, …
+# Use templating – the prompt can contain {{.Arg1}}, {{.Arg2}}, …
 slash todo "Buy milk" "Call mom"
 ```
 
