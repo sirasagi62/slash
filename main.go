@@ -9,11 +9,14 @@ import (
 	"text/template"
 )
 
+const version = "0.1.0"
+
 func printHelp() {
 	fmt.Println(`Usage: slash <note> [args...]
 Commands:
   new <name>    Create a new note
   help          Show this help message
+  version       Print the program version
 
 If <note> is a note name, its content is printed. If additional arguments are provided,
 the note is treated as a Go text/template with Arg1, Arg2, ... variables.`)
@@ -31,6 +34,12 @@ func main() {
 	// Help command
 	if note == "help" || note == "-h" || note == "--help" {
 		printHelp()
+		os.Exit(0)
+	}
+
+	// Version command
+	if note == "version" {
+		fmt.Println(version)
 		os.Exit(0)
 	}
 

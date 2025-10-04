@@ -9,7 +9,7 @@ It lets you create, view, and template notes directly from the terminal.
 - **`slash new <name>`** – Create a new markdown note in `~/.config/slash`.
 - **`slash <note> [args...]`** – Display a note. If additional arguments are supplied,
   the note is processed as a Go `text/template` with variables `{{.Arg1}}`, `{{.Arg2}}`, ….
-- **`slash version`** – (planned) Print the program version.
+- **`slash version`** – Print the program version.
 
 ## Installation
 
@@ -31,6 +31,9 @@ export PATH=$PATH:$HOME/go/bin   # add to your shell profile (~/.bashrc, ~/.zshr
 ```bash
 # Show help
 slash help
+
+# Show version
+slash version
 
 # Create a new note called "todo"
 slash new todo

@@ -10,7 +10,7 @@
 - Ensure cross‑platform compatibility (Linux, macOS, Windows).
 
 ## Core Features (Version 1.0)
-1. **`slash version`** – Print the program version.
+1. **`slash version`** – Print the program version. *(implemented)*
 2. **`slash help`** – Show usage information and list available subcommands.
 3. **`slash <note> [args...]`** – Display a markdown note from `~/.config/slash` or `./.slash`. If additional arguments are provided, the note is processed as a Go `text/template` with those arguments.
 
@@ -53,7 +53,7 @@
 | Week | Milestone                              |
 |------|----------------------------------------|
 | 1    | Project initialization, CLI skeleton  |
-| 2    | Implement `version` and `help` commands|
+| 2    | Implemented `version` and `help` commands|
 | 5    | Comprehensive testing and CI setup     |
 | 6    | Documentation, packaging, release prep |
 
