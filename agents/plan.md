@@ -12,7 +12,7 @@
 ## Core Features (Version 1.0)
 1. **`slash version`** – Print the program version. *(implemented)*
 2. **`slash help`** – Show usage information and list available subcommands.
-3. **`slash <note> [args...]`** – Display a markdown note from `~/.config/slash` or `./.slash`. If additional arguments are provided, the note is processed as a Go `text/template` with those arguments.
+3. **`slash <prompt> [args...]`** – Display a markdown prompt from `~/.config/slash` or `./.slash`. If additional arguments are provided, the prompt is processed as a Go `text/template` with those arguments.
 
 ## Architecture
 - **`main.go`** – Entry point; parses top‑level flags and dispatches to subcommand handlers.

@@ -50,6 +50,12 @@ func main() {
 		}
 		name := args[0]
 
+		// Prevent creating prompts with reserved names
+		if name == "help" || name == "version" || name == "new" {
+			fmt.Fprintf(os.Stderr, "Error: cannot create prompt with reserved name \"%s\"\n", name)
+			os.Exit(1)
+		}
+
 		homeDir, err := os.UserHomeDir()
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Error getting home directory: %v\n", err)
