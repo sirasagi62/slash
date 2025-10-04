@@ -1,10 +1,12 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
+	"strings"
 	"text/template"
 )
 
@@ -63,6 +65,23 @@ func main() {
 		}
 		path := filepath.Join(homeDir, ".config", "slash", name+".md")
 
+		// If -p option is provided, replace the prompt content without opening editor
+		if len(args) >= 2 && args[1] == "-p" {
+			content := strings.Join(args[2:], " ")
+			// Ensure the target directory exists
+			if err := os.MkdirAll(filepath.Dir(path), 0755); err != nil {
+				fmt.Fprintf(os.Stderr, "Error creating directory: %v\n", err)
+				os.Exit(1)
+			}
+			// Write the provided content to the file (overwrite or create)
+			if err := os.WriteFile(path, []byte(content), 0644); err != nil {
+				fmt.Fprintf(os.Stderr, "Error writing file: %v\n", err)
+				os.Exit(1)
+			}
+			fmt.Println("Prompt replaced.")
+			os.Exit(0)
+		}
+
 		// Ensure the target directory exists
 		if err := os.MkdirAll(filepath.Dir(path), 0755); err != nil {
 			fmt.Fprintf(os.Stderr, "Error creating directory: %v\n", err)
@@ -77,8 +96,23 @@ func main() {
 		}
 		f.Close()
 
-		// Open the file in the user's editor
-		editor := os.Getenv("EDITOR")
+		// Determine the editor to use:
+		// 1. Try reading from ~/.config/slash/config.json ("editor" field)
+		// 2. Fallback to $EDITOR environment variable
+		// 3. Default to "vi"
+		editor := ""
+		configPath := filepath.Join(homeDir, ".config", "slash", "config.json")
+		if cfgData, err := os.ReadFile(configPath); err == nil {
+			var cfg struct {
+				Editor string `json:"editor"`
+			}
+			if jsonErr := json.Unmarshal(cfgData, &cfg); jsonErr == nil && cfg.Editor != "" {
+				editor = cfg.Editor
+			}
+		}
+		if editor == "" {
+			editor = os.Getenv("EDITOR")
+		}
 		if editor == "" {
 			editor = "vi"
 		}
