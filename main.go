@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-const version = "0.1.0"
+const version = "0.0.1"
 
 func printHelp() {
 	fmt.Println(`Usage: slash <prompt> [args...]
