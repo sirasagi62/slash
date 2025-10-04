@@ -16,7 +16,7 @@
 
 ## Architecture
 - **`main.go`** – Entry point; parses top‑level flags and dispatches to subcommand handlers.
-- **`cmd/` package** – Contains a subpackage for each subcommand (`version`, `help`, `count`, `replace`, `grep`). Each subcommand implements a common interface:
+- **`cmd/` package** – Contains a subpackage for each subcommand (`version`, `help`). Each subcommand implements a common interface:
   ```go
   type Command interface {
       Name() string
@@ -39,7 +39,6 @@
 3. **Implement command interface and registration**
    - Build a map of command name → `Command` implementation.
 4. **Develop each subcommand**
-   - Write unit tests for core logic (e.g., counting, replace, grep).
    - Ensure proper error messages for missing arguments or file errors.
 5. **Add help and version output**
    - Use `embed` package to include a static `VERSION` file.
@@ -55,8 +54,6 @@
 |------|----------------------------------------|
 | 1    | Project initialization, CLI skeleton  |
 | 2    | Implement `version` and `help` commands|
-| 3    | Implement `count` and unit tests       |
-| 4    | Implement `replace` and `grep` commands|
 | 5    | Comprehensive testing and CI setup     |
 | 6    | Documentation, packaging, release prep |
 
